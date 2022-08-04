@@ -362,8 +362,42 @@
               </nav>
             </div>
             <div class="sm:flex justify-end hidden pr-16 lg:pr-0">
+              {% if request.user.is_authenticated %}
               <a
-                href="signin.html"
+                href=""
+                class="
+                  text-base
+                  font-medium
+                  text-white
+                  hover:opacity-70
+                  py-3
+                  px-7
+                  loginBtn
+                "
+              >
+                {{ request.user }}
+              </a>
+              <a
+                href="{% url 'logout' %}"
+                class="
+                  text-base
+                  font-medium
+                  text-white
+                  bg-white bg-opacity-20
+                  rounded-lg
+                  py-3
+                  px-6
+                  hover:bg-opacity-100 hover:text-dark
+                  signUpBtn
+                  duration-300
+                  ease-in-out
+                "
+              >
+                Log Out
+              </a>
+              {% else %}
+              <a
+                href="{% url 'login' %}"
                 class="
                   text-base
                   font-medium
@@ -377,7 +411,7 @@
                 Sign In
               </a>
               <a
-                href="signup.html"
+                href="{% url 'registration' %}"
                 class="
                   text-base
                   font-medium
@@ -394,6 +428,7 @@
               >
                 Sign Up
               </a>
+              {% endif %}
             </div>
           </div>
         </div>
@@ -858,7 +893,7 @@
                     "
                   >
                     <img
-                      src="{% static 'assets/images/footer/brands/graygrids.svg}' %"
+                      src="{% static 'assets/images/footer/brands/graygrids.svg' %}"
                       alt="graygrids"
                     />
                   </a>
